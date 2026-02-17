@@ -40,16 +40,22 @@ const departments = [
   { name: "Training Academy", tasks: "Ausbildung neuer Agenten, Fortbildungsprogramme, Prüfungen.", icon: GraduationCap },
 ];
 
-const ranks = Array.from({ length: 30 }, (_, i) => ({
-  number: String(i + 1).padStart(2, "0"),
-  name: `[Rang ${i + 1}]`,
-}));
+const ranks = [
+  "Visitor", "Suspended", "Vacation", "Facility Manager", "Platzhalter",
+  "Praktikant", "Agent in Education", "Field Agent", "Agent", "First Class Agent",
+  "Federal Agent", "Private Agent", "Senior Agent", "Special Agent", "Senior Special Agent",
+  "Commander", "Elite Agent", "Investigator", "Administration of HR", "Lead Field Agent",
+  "Supervisory Agent (Media)", "Lead Special Agent", "Lead Head Agent",
+  "Deputy Division Chief", "Division Chief", "Chief of Staff",
+  "Curator of Divisions", "Assistant Director of FIB", "Deputy Director of FIB", "Director of FIB",
+].map((name, i) => ({ number: String(i + 1).padStart(2, "0"), name }));
 
 const rankTiers = [
-  { label: "Führungsebene", color: "bg-primary text-primary-foreground", range: [0, 5] },
-  { label: "Management", color: "bg-secondary text-foreground", range: [5, 12] },
-  { label: "Operative Ebene", color: "bg-muted text-foreground", range: [12, 24] },
-  { label: "Ausbildung", color: "bg-card text-muted-foreground", range: [24, 30] },
+  { label: "Sonstiges", color: "bg-card text-muted-foreground", range: [0, 5] },
+  { label: "Ausbildung", color: "bg-muted text-foreground", range: [5, 8] },
+  { label: "Operative Ebene", color: "bg-secondary text-foreground", range: [8, 20] },
+  { label: "Management", color: "bg-primary/20 text-foreground", range: [20, 25] },
+  { label: "Führungsebene", color: "bg-primary text-primary-foreground", range: [25, 30] },
 ];
 
 const SectionTitle = ({ children, id }: { children: React.ReactNode; id: string }) => (
