@@ -34,10 +34,13 @@ const rpImprovements = [
 ];
 
 const departments = [
-  { name: "Internal Affairs", tasks: "Interne Ermittlungen, Disziplinarverfahren, Qualitätskontrolle der Einsätze.", icon: Eye },
-  { name: "Criminal Investigation", tasks: "Schwerkriminalität, Mordermittlung, organisierte Kriminalität.", icon: Crosshair },
-  { name: "Special Operations", tasks: "Hochrisiko-Einsätze, Zugriffe, Spezialeinheit für besondere Lagen.", icon: Shield },
-  { name: "Training Academy", tasks: "Ausbildung neuer Agenten, Fortbildungsprogramme, Prüfungen.", icon: GraduationCap },
+  { name: "Human Resources (HR)", tasks: "Kümmert sich um die Bewerbungen neuer Agenten und erstellt das Bewerbungskonzept. Sie bearbeiten die Bewerbungen und führen die Gespräche. Dazu gehören auch die Orgawechsel und die internen Rankups.", icon: Users },
+  { name: "Criminal Investigation Division (CID)", tasks: "Die CID sammelt Beweise gegen kriminelle Strukturen. Durch ihre Arbeit werden die Anträge auf Razzien und den Terrorstatus gestellt. Ein weiterer wichtiger Bereich ist die Undercover-Wantedjagd – so fahnden sie nach Kriminellen, ohne erkannt zu werden.", icon: Crosshair },
+  { name: "Corruption Office (FIBCO)", tasks: "Die FIBCO ist für die Bekämpfung von Korruption innerhalb staatlicher Einrichtungen zuständig. Sie arbeitet mit der Justiz zusammen, leitet eigenständige Ermittlungen und vollstreckt erlassene Haftbefehle.", icon: Eye },
+  { name: "Trainings Division (TD)", tasks: "Kümmert sich um die Ausbildungen der Agents, wertet Arbeitszeugnisse aus und vermittelt wichtiges Wissen, das die Mitarbeiter für den Dienst benötigen.", icon: GraduationCap },
+  { name: "Critical Incident Response Group (CIRG)", tasks: "Die CIRG ist die Spezialeinheit des FIB. Die Agents werden speziell ausgebildet, um in jeglichen Krisensituationen zu reagieren. Außerdem kümmert sich die CIRG um die Planung und Ausführung der Events.", icon: Shield },
+  { name: "Public Relations (PR)", tasks: "Die PR ist die Presseabteilung des FIB. Sie kümmert sich um Pressekonferenzen und die Kommunikation mit den Bürgern. Sie arbeitet mit der HR zusammen, um offene Bewerbungsphasen anzukündigen.", icon: BookOpen },
+  { name: "LAW", tasks: "Die LAW ist die Juraabteilung des FIB. Sie kümmert sich um die Jura-Schulung der Mitarbeiter.", icon: Scale },
 ];
 
 const ranks = [
