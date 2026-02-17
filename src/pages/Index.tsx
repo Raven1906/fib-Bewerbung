@@ -51,11 +51,12 @@ const ranks = [
 ].map((name, i) => ({ number: String(i + 1).padStart(2, "0"), name }));
 
 const rankTiers = [
-  { label: "Sonstiges", color: "bg-card text-muted-foreground", range: [0, 5] },
-  { label: "Ausbildung", color: "bg-muted text-foreground", range: [5, 8] },
-  { label: "Operative Ebene", color: "bg-secondary text-foreground", range: [8, 20] },
-  { label: "Management", color: "bg-primary/20 text-foreground", range: [20, 25] },
-  { label: "Führungsebene", color: "bg-primary text-primary-foreground", range: [25, 30] },
+  { label: "Sonstiges (1–6)", color: "bg-card text-muted-foreground", range: [0, 6] },
+  { label: "Agent (7–12)", color: "bg-muted text-foreground", range: [6, 12] },
+  { label: "Command (13–16)", color: "bg-secondary text-foreground", range: [12, 16] },
+  { label: "Highcommand (17–23)", color: "bg-primary/20 text-foreground", range: [16, 23] },
+  { label: "Abteilungsleiter / Curator / Personalverwaltung (24–27)", color: "bg-primary/40 text-foreground", range: [23, 27] },
+  { label: "Head Leaderschaft + Leaderschaft (28–30)", color: "bg-primary text-primary-foreground", range: [27, 30] },
 ];
 
 const SectionTitle = ({ children, id }: { children: React.ReactNode; id: string }) => (
