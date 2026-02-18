@@ -1,10 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import {
-  Shield, Target, Users, Award, BookOpen, ChevronDown,
+  Shield, Target, Users, Award, BookOpen,
   Star, Crosshair, Scale, Eye, Briefcase, GraduationCap
 } from "lucide-react";
 
@@ -63,379 +61,282 @@ const ranks = [
 ].map((name, i) => ({ number: String(i + 1).padStart(2, "0"), name }));
 
 const rankTiers = [
-  { label: "Sonstiges (1–6)", color: "bg-card text-muted-foreground border border-border/50", range: [0, 6] },
-  { label: "Agent (7–12)", color: "bg-muted text-foreground", range: [6, 12] },
-  { label: "Command (13–16)", color: "bg-secondary text-foreground", range: [12, 16] },
-  { label: "Highcommand (17–23)", color: "bg-primary/20 text-foreground", range: [16, 23] },
-  { label: "Abteilungsleiter / Curator / Personalverwaltung (24–27)", color: "bg-primary/40 text-foreground", range: [23, 27] },
-  { label: "Head Leaderschaft + Leaderschaft (28–30)", color: "bg-primary text-primary-foreground", range: [27, 30] },
+  { label: "Sonstiges (1–6)", range: [0, 6] },
+  { label: "Agent (7–12)", range: [6, 12] },
+  { label: "Command (13–16)", range: [12, 16] },
+  { label: "Highcommand (17–23)", range: [16, 23] },
+  { label: "Abteilungsleiter / Curator / Personalverwaltung (24–27)", range: [23, 27] },
+  { label: "Head Leaderschaft + Leaderschaft (28–30)", range: [27, 30] },
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
-const SectionTitle = ({ children, id }: { children: React.ReactNode; id: string }) => (
+const SectionTitle = ({ children, id, number }: { children: React.ReactNode; id: string; number: string }) => (
   <motion.div
     id={id}
-    className="scroll-mt-24 mb-10"
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
+    className="scroll-mt-24 mb-8 mt-16 first:mt-0"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.5 }}
+    transition={{ duration: 0.4 }}
   >
-    <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 tracking-tight">{children}</h2>
-    <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+    <div className="flex items-baseline gap-3 mb-2">
+      <span className="text-sm font-mono text-muted-foreground">{number}.</span>
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">{children}</h2>
+    </div>
+    <Separator className="bg-foreground/20" />
   </motion.div>
 );
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/8 via-primary/3 to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-primary/3 rounded-full blur-3xl animate-pulse [animation-delay:1s]" />
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        </div>
-
+    <div className="min-h-screen bg-background">
+      {/* DOCUMENT HEADER */}
+      <header className="border-b-2 border-foreground/20">
         <motion.div
-          className="relative z-10 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-20 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <Badge variant="outline" className="mb-8 border-primary/30 text-primary px-5 py-2 text-xs tracking-[0.3em] uppercase backdrop-blur-sm bg-primary/5">
-              Federal Investigation Bureau
-            </Badge>
-          </motion.div>
+          <div className="flex justify-center mb-6">
+            <img src={tdImg} alt="FIB Seal" className="w-24 h-24 md:w-32 md:h-32 object-contain" />
+          </div>
 
-          <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-foreground leading-[1.1] mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Bewerbung als{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-primary/60">
-              Leader
-            </span>{" "}
-            des FIB
-          </motion.h1>
+          <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-4 font-mono">
+            Federal Investigation Bureau · Vertraulich
+          </p>
 
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-12 tracking-[0.2em] uppercase font-light"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-4">
+            Bewerbung als Leader des FIB
+          </h1>
+
+          <Separator className="max-w-xs mx-auto bg-foreground/30 my-6" />
+
+          <p className="text-sm text-muted-foreground tracking-wide uppercase">
             Struktur · Führung · Professionelles Roleplay
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            <Button size="lg" className="text-base font-semibold px-10 h-12 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow" asChild>
-              <a href="#agenda">Zur Bewerbung</a>
-            </Button>
-            <Button size="lg" variant="outline" className="text-base border-primary/20 hover:bg-primary/5 hover:border-primary/40 px-10 h-12 backdrop-blur-sm transition-all" asChild>
-              <a href="#agenda">Agenda ansehen</a>
-            </Button>
-          </motion.div>
-
-          <motion.a
-            href="#agenda"
-            className="inline-block mt-20 text-primary/60 hover:text-primary transition-colors"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-8 h-8" />
-          </motion.a>
+          <p className="text-xs text-muted-foreground/60 mt-4 font-mono">
+            Dokument-Nr. FIB-LB-2026 · Klassifizierung: Intern
+          </p>
         </motion.div>
-      </section>
+      </header>
 
-      <div className="max-w-5xl mx-auto px-4 pb-24 space-y-32">
-        {/* AGENDA */}
-        <section id="agenda" className="scroll-mt-24">
-          <SectionTitle id="agenda-title">Agenda</SectionTitle>
-          <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {sections.map((s, i) => (
-              <motion.a key={s.id} href={`#${s.id}`} className="group" variants={fadeUp}>
-                <Card className="bg-card/40 border-border/30 hover:border-primary/40 hover:bg-card/80 transition-all duration-500 cursor-pointer backdrop-blur-sm hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
-                  <CardContent className="flex items-center gap-4 p-5">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-primary group-hover:from-primary/25 group-hover:to-primary/10 transition-all duration-500">
-                      <s.icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-muted-foreground/60 font-mono tracking-wider">{String(i + 1).padStart(2, "0")}</span>
-                      <p className="text-sm font-medium text-foreground">{s.label}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.a>
-            ))}
-          </motion.div>
-        </section>
+      {/* DOCUMENT BODY */}
+      <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 space-y-4">
 
-        {/* IC & OOC */}
+        {/* TABLE OF CONTENTS */}
         <motion.section
+          id="agenda"
+          className="scroll-mt-24"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true }}
           variants={stagger}
         >
-          <SectionTitle id="ic-ooc">IC & OOC Informationen</SectionTitle>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="mb-8">
+            <h2 className="text-lg font-bold text-foreground tracking-tight uppercase mb-3">Inhaltsverzeichnis</h2>
+            <Separator className="bg-foreground/20" />
+          </div>
+          <div className="space-y-0">
+            {sections.map((s, i) => (
+              <motion.a
+                key={s.id}
+                href={`#${s.id}`}
+                className="flex items-center gap-3 py-2 border-b border-border/50 hover:bg-muted/50 px-2 -mx-2 transition-colors group"
+                variants={fadeUp}
+              >
+                <span className="text-sm font-mono text-muted-foreground w-8">{String(i + 1).padStart(2, "0")}</span>
+                <s.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <span className="text-sm text-foreground">{s.label}</span>
+                <span className="flex-1 border-b border-dotted border-muted-foreground/30 mx-2 mb-1" />
+                <span className="text-xs text-muted-foreground font-mono">§{i + 1}</span>
+              </motion.a>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* IC & OOC */}
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <SectionTitle id="ic-ooc" number="01">IC & OOC Informationen</SectionTitle>
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div variants={fadeUp}>
-              <Card className="bg-card/40 border-border/30 backdrop-blur-sm h-full hover:border-primary/20 transition-colors duration-500">
-                <CardHeader>
-                  <CardTitle className="text-primary text-xl flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    IC – In Character
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm">
-                  {[
-                    ["Name", "[IC Name]"],
-                    ["Alter", "[IC Alter]"],
-                    ["Dienstzeit", "[IC Dienstzeit]"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="flex justify-between border-b border-border/20 pb-3">
-                      <span className="text-muted-foreground">{label}</span>
-                      <span className="text-foreground font-medium">{value}</span>
-                    </div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
+                IC – In Character
+              </h3>
+              <table className="w-full text-sm">
+                <tbody>
+                  {[["Name", "[IC Name]"], ["Alter", "[IC Alter]"], ["Dienstzeit", "[IC Dienstzeit]"]].map(([label, value]) => (
+                    <tr key={label} className="border-b border-border/30">
+                      <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
+                      <td className="py-2 text-foreground font-medium">{value}</td>
+                    </tr>
                   ))}
-                  <div className="pt-2">
-                    <p className="text-muted-foreground mb-2 text-xs uppercase tracking-wider">Werdegang</p>
-                    <p className="text-foreground leading-relaxed">[Hier kommt eure IC Beschreibung hin – Werdegang, Vision, Erfahrung des Charakters.]</p>
-                  </div>
-                </CardContent>
-              </Card>
+                </tbody>
+              </table>
+              <div className="mt-4">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Werdegang</p>
+                <p className="text-sm text-foreground leading-relaxed">[Hier kommt eure IC Beschreibung hin – Werdegang, Vision, Erfahrung des Charakters.]</p>
+              </div>
             </motion.div>
 
             <motion.div variants={fadeUp}>
-              <Card className="bg-card/40 border-border/30 backdrop-blur-sm h-full hover:border-primary/20 transition-colors duration-500">
-                <CardHeader>
-                  <CardTitle className="text-primary text-xl flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse [animation-delay:0.5s]" />
-                    OOC – Out of Character
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm">
-                  {[
-                    ["Alter", "[OOC Alter]"],
-                    ["Onlinezeiten", "[Onlinezeiten]"],
-                    ["RP Erfahrung", "[RP Erfahrung]"],
-                    ["Führungserfahrung", "[Führungserfahrung]"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="flex justify-between border-b border-border/20 pb-3">
-                      <span className="text-muted-foreground">{label}</span>
-                      <span className="text-foreground font-medium">{value}</span>
-                    </div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
+                OOC – Out of Character
+              </h3>
+              <table className="w-full text-sm">
+                <tbody>
+                  {[["Alter", "[OOC Alter]"], ["Onlinezeiten", "[Onlinezeiten]"], ["RP Erfahrung", "[RP Erfahrung]"], ["Führungserfahrung", "[Führungserfahrung]"]].map(([label, value]) => (
+                    <tr key={label} className="border-b border-border/30">
+                      <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
+                      <td className="py-2 text-foreground font-medium">{value}</td>
+                    </tr>
                   ))}
-                  <div className="pt-2">
-                    <p className="text-muted-foreground mb-2 text-xs uppercase tracking-wider">Über mich</p>
-                    <p className="text-foreground leading-relaxed">[Hier kommt eure OOC Beschreibung hin – Motivation, Verantwortungsbewusstsein, Aktivität.]</p>
-                  </div>
-                </CardContent>
-              </Card>
+                </tbody>
+              </table>
+              <div className="mt-4">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Über mich</p>
+                <p className="text-sm text-foreground leading-relaxed">[Hier kommt eure OOC Beschreibung hin – Motivation, Verantwortungsbewusstsein, Aktivität.]</p>
+              </div>
             </motion.div>
           </div>
         </motion.section>
 
         {/* MOTIVATION */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeUp}
-        >
-          <SectionTitle id="motivation">Warum ich Leader werden möchte</SectionTitle>
-          <Card className="bg-gradient-to-br from-card/60 to-card/30 border-border/30 backdrop-blur-sm overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <CardContent className="p-8 md:p-10 relative">
-              <p className="text-foreground leading-relaxed mb-8 text-lg">
-                [Hier beschreibt ihr, warum ihr die Leitung des FIB übernehmen möchtet. Was treibt euch an? Welche Vision habt ihr für die Organisation?]
-              </p>
-              <ul className="space-y-4">
-                {["[Motivationspunkt 1]", "[Motivationspunkt 2]", "[Motivationspunkt 3]"].map((p, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    </div>
-                    <span className="text-muted-foreground">{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <SectionTitle id="motivation" number="02">Warum ich Leader werden möchte</SectionTitle>
+          <p className="text-sm text-foreground leading-relaxed mb-6">
+            [Hier beschreibt ihr, warum ihr die Leitung des FIB übernehmen möchtet. Was treibt euch an? Welche Vision habt ihr für die Organisation?]
+          </p>
+          <ul className="space-y-3 pl-4">
+            {["[Motivationspunkt 1]", "[Motivationspunkt 2]", "[Motivationspunkt 3]"].map((p, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm">
+                <span className="text-muted-foreground font-mono text-xs mt-0.5">{String.fromCharCode(97 + i)})</span>
+                <span className="text-foreground">{p}</span>
+              </li>
+            ))}
+          </ul>
         </motion.section>
 
         {/* QUALITIES */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-        >
-          <SectionTitle id="qualities">Was mich als Leader auszeichnet</SectionTitle>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {qualities.map((q) => (
-              <motion.div key={q.title} variants={fadeUp}>
-                <Card className="bg-card/40 border-border/30 hover:border-primary/30 transition-all duration-500 backdrop-blur-sm group hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 h-full">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-primary mb-4 group-hover:from-primary/25 group-hover:to-primary/10 transition-all duration-500">
-                      <q.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">{q.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{q.desc}</p>
-                  </CardContent>
-                </Card>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <SectionTitle id="qualities" number="03">Was mich als Leader auszeichnet</SectionTitle>
+          <div className="space-y-4">
+            {qualities.map((q, i) => (
+              <motion.div key={q.title} variants={fadeUp} className="flex items-start gap-4 py-3 border-b border-border/30">
+                <div className="w-8 h-8 rounded border border-border flex items-center justify-center text-muted-foreground shrink-0 mt-0.5">
+                  <q.icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-foreground mb-1">{String(i + 1).padStart(2, "0")}. {q.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{q.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
         {/* RP IMPROVEMENTS */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-        >
-          <SectionTitle id="rp-improvements">Vorschläge zur Verbesserung des Roleplays</SectionTitle>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <SectionTitle id="rp-improvements" number="04">Vorschläge zur Verbesserung des Roleplays</SectionTitle>
           <div className="space-y-4">
             {rpImprovements.map((item, i) => (
-              <motion.div key={i} variants={fadeUp}>
-                <Card className="bg-card/40 border-border/30 backdrop-blur-sm hover:border-primary/20 transition-all duration-500 group hover:bg-card/60">
-                  <CardContent className="flex items-start gap-6 p-6">
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-primary/40 to-primary/10 font-mono mt-0.5 select-none">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1.5 text-base group-hover:text-primary transition-colors duration-300">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+              <motion.div key={i} variants={fadeUp} className="flex items-start gap-4 py-3 border-b border-border/30">
+                <span className="text-lg font-bold text-muted-foreground/40 font-mono w-8 shrink-0 text-right">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-sm font-bold text-foreground mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
         {/* DEPARTMENTS */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-        >
-          <SectionTitle id="departments">Abteilungskonzept</SectionTitle>
-          <div className="grid sm:grid-cols-2 gap-5">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <SectionTitle id="departments" number="05">Abteilungskonzept</SectionTitle>
+          <div className="space-y-6">
             {departments.map((dept) => (
-              <motion.div key={dept.name} variants={fadeUp}>
-                <Card className="bg-card/40 border-border/30 hover:border-primary/30 transition-all duration-500 backdrop-blur-sm group hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 h-full overflow-hidden">
-                   <div className="flex items-center justify-center pt-6 px-6">
-                     <img src={dept.img} alt={dept.name} className="w-20 h-20 object-contain rounded-xl" />
-                   </div>
-                   <CardContent className="p-6 pt-4">
-                     <h3 className="font-semibold text-foreground mb-2 text-base">{dept.name}</h3>
-                     <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
-                   </CardContent>
-                 </Card>
+              <motion.div key={dept.name} variants={fadeUp} className="flex gap-5 py-4 border-b border-border/30">
+                <img src={dept.img} alt={dept.name} className="w-16 h-16 object-contain shrink-0 rounded" />
+                <div>
+                  <h3 className="text-sm font-bold text-foreground mb-1">{dept.name}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
         {/* RANKS */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-        >
-          <SectionTitle id="ranks">Rangkonzept</SectionTitle>
-          <div className="space-y-8">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <SectionTitle id="ranks" number="06">Rangkonzept</SectionTitle>
+          <div className="space-y-6">
             {rankTiers.map((tier) => (
               <motion.div key={tier.label} variants={fadeUp}>
-                <Badge className={`${tier.color} mb-4 text-xs tracking-wider`}>{tier.label}</Badge>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 border-b border-border/30 pb-1">
+                  {tier.label}
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1">
                   {ranks.slice(tier.range[0], tier.range[1]).map((r) => (
-                    <div key={r.number} className="bg-card/30 border border-border/20 rounded-lg px-3 py-3 text-center backdrop-blur-sm hover:border-primary/20 hover:bg-card/50 transition-all duration-300 group">
-                      <span className="text-xs text-primary font-mono font-semibold">{r.number}</span>
-                      <p className="text-xs text-muted-foreground mt-1 group-hover:text-foreground transition-colors">{r.name}</p>
+                    <div key={r.number} className="border border-border/40 px-2 py-2 text-center">
+                      <span className="text-[10px] text-muted-foreground font-mono font-bold">{r.number}</span>
+                      <p className="text-[11px] text-foreground mt-0.5 leading-tight">{r.name}</p>
                     </div>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
-          <motion.div variants={fadeUp}>
-            <Card className="bg-card/40 border-border/30 backdrop-blur-sm mt-8">
-              <CardContent className="p-6 space-y-3 text-sm">
+          <motion.div variants={fadeUp} className="mt-8">
+            <table className="w-full text-sm">
+              <tbody>
                 {[
                   ["Beförderungskriterien", "[Kriterien hier eintragen]"],
                   ["Aktivitätsanforderung", "[Anforderung hier eintragen]"],
                   ["Interne Bewertungen", "[Bewertungssystem hier beschreiben]"],
                 ].map(([label, value]) => (
-                  <div key={label} className="flex justify-between border-b border-border/20 pb-3">
-                    <span className="text-muted-foreground">{label}</span>
-                    <span className="text-foreground">{value}</span>
-                  </div>
+                  <tr key={label} className="border-b border-border/30">
+                    <td className="py-2 text-muted-foreground pr-4">{label}</td>
+                    <td className="py-2 text-foreground">{value}</td>
+                  </tr>
                 ))}
-              </CardContent>
-            </Card>
+              </tbody>
+            </table>
           </motion.div>
         </motion.section>
 
         {/* CLOSING */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeUp}
-        >
-          <SectionTitle id="closing">Schlusswort</SectionTitle>
-          <Card className="bg-gradient-to-br from-card/60 to-card/30 border-border/30 border-l-4 border-l-primary backdrop-blur-sm overflow-hidden relative">
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-            <CardContent className="p-8 md:p-10 relative">
-              <p className="text-foreground leading-relaxed italic text-lg">
-                [Hier kommt euer abschließender Text hin – Zusammenfassung eurer Vision, Dank an die Leser, und warum ihr der richtige Kandidat für die Leitung des FIB seid.]
-              </p>
-            </CardContent>
-          </Card>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <SectionTitle id="closing" number="07">Schlusswort</SectionTitle>
+          <div className="border-l-2 border-foreground/20 pl-6 py-2">
+            <p className="text-sm text-foreground leading-relaxed italic">
+              [Hier kommt euer abschließender Text hin – Zusammenfassung eurer Vision, Dank an die Leser, und warum ihr der richtige Kandidat für die Leitung des FIB seid.]
+            </p>
+          </div>
         </motion.section>
 
-        <Separator className="bg-border/20" />
-
-        {/* FOOTER */}
-        <footer className="text-center text-sm text-muted-foreground/60 pb-8">
-          <p className="tracking-wider uppercase text-xs">FIB Leader Bewerbung · Alle Angaben sind Platzhalter</p>
+        {/* DOCUMENT FOOTER */}
+        <Separator className="bg-foreground/20 mt-16" />
+        <footer className="text-center py-8 space-y-2">
+          <p className="text-xs text-muted-foreground font-mono tracking-wider uppercase">
+            Federal Investigation Bureau · Bewerbungsdokument
+          </p>
+          <p className="text-[10px] text-muted-foreground/50 font-mono">
+            Alle Angaben sind Platzhalter · Dokument-Nr. FIB-LB-2026
+          </p>
         </footer>
-      </div>
+      </main>
     </div>
   );
 };
