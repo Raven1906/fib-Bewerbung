@@ -8,6 +8,14 @@ import {
   Star, Crosshair, Scale, Eye, Briefcase, GraduationCap
 } from "lucide-react";
 
+import hrImg from "@/assets/departments/hr.png";
+import cidImg from "@/assets/departments/cid.png";
+import fibcoImg from "@/assets/departments/fibco.png";
+import tdImg from "@/assets/departments/td.png";
+import cirgImg from "@/assets/departments/cirg.png";
+import prImg from "@/assets/departments/pr.png";
+import lawImg from "@/assets/departments/law.png";
+
 const sections = [
   { id: "ic-ooc", label: "IC & OOC Informationen", icon: BookOpen },
   { id: "motivation", label: "Motivation", icon: Target },
@@ -35,13 +43,13 @@ const rpImprovements = [
 ];
 
 const departments = [
-  { name: "Human Resources (HR)", tasks: "Kümmert sich um die Bewerbungen neuer Agenten und erstellt das Bewerbungskonzept. Sie bearbeiten die Bewerbungen und führen die Gespräche. Dazu gehören auch die Orgawechsel und die internen Rankups.", icon: Users },
-  { name: "Criminal Investigation Division (CID)", tasks: "Die CID sammelt Beweise gegen kriminelle Strukturen. Durch ihre Arbeit werden die Anträge auf Razzien und den Terrorstatus gestellt. Ein weiterer wichtiger Bereich ist die Undercover-Wantedjagd – so fahnden sie nach Kriminellen, ohne erkannt zu werden.", icon: Crosshair },
-  { name: "Corruption Office (FIBCO)", tasks: "Die FIBCO ist für die Bekämpfung von Korruption innerhalb staatlicher Einrichtungen zuständig. Sie arbeitet mit der Justiz zusammen, leitet eigenständige Ermittlungen und vollstreckt erlassene Haftbefehle.", icon: Eye },
-  { name: "Trainings Division (TD)", tasks: "Kümmert sich um die Ausbildungen der Agents, wertet Arbeitszeugnisse aus und vermittelt wichtiges Wissen, das die Mitarbeiter für den Dienst benötigen.", icon: GraduationCap },
-  { name: "Critical Incident Response Group (CIRG)", tasks: "Die CIRG ist die Spezialeinheit des FIB. Die Agents werden speziell ausgebildet, um in jeglichen Krisensituationen zu reagieren. Außerdem kümmert sich die CIRG um die Planung und Ausführung der Events.", icon: Shield },
-  { name: "Public Relations (PR)", tasks: "Die PR ist die Presseabteilung des FIB. Sie kümmert sich um Pressekonferenzen und die Kommunikation mit den Bürgern. Sie arbeitet mit der HR zusammen, um offene Bewerbungsphasen anzukündigen.", icon: BookOpen },
-  { name: "LAW", tasks: "Die LAW ist die Juraabteilung des FIB. Sie kümmert sich um die Jura-Schulung der Mitarbeiter.", icon: Scale },
+  { name: "Human Resources (HR)", tasks: "Kümmert sich um die Bewerbungen neuer Agenten und erstellt das Bewerbungskonzept. Sie bearbeiten die Bewerbungen und führen die Gespräche. Dazu gehören auch die Orgawechsel und die internen Rankups.", icon: Users, img: hrImg },
+  { name: "Criminal Investigation Division (CID)", tasks: "Die CID sammelt Beweise gegen kriminelle Strukturen. Durch ihre Arbeit werden die Anträge auf Razzien und den Terrorstatus gestellt. Ein weiterer wichtiger Bereich ist die Undercover-Wantedjagd – so fahnden sie nach Kriminellen, ohne erkannt zu werden.", icon: Crosshair, img: cidImg },
+  { name: "Corruption Office (FIBCO)", tasks: "Die FIBCO ist für die Bekämpfung von Korruption innerhalb staatlicher Einrichtungen zuständig. Sie arbeitet mit der Justiz zusammen, leitet eigenständige Ermittlungen und vollstreckt erlassene Haftbefehle.", icon: Eye, img: fibcoImg },
+  { name: "Trainings Division (TD)", tasks: "Kümmert sich um die Ausbildungen der Agents, wertet Arbeitszeugnisse aus und vermittelt wichtiges Wissen, das die Mitarbeiter für den Dienst benötigen.", icon: GraduationCap, img: tdImg },
+  { name: "Critical Incident Response Group (CIRG)", tasks: "Die CIRG ist die Spezialeinheit des FIB. Die Agents werden speziell ausgebildet, um in jeglichen Krisensituationen zu reagieren. Außerdem kümmert sich die CIRG um die Planung und Ausführung der Events.", icon: Shield, img: cirgImg },
+  { name: "Public Relations (PR)", tasks: "Die PR ist die Presseabteilung des FIB. Sie kümmert sich um Pressekonferenzen und die Kommunikation mit den Bürgern. Sie arbeitet mit der HR zusammen, um offene Bewerbungsphasen anzukündigen.", icon: BookOpen, img: prImg },
+  { name: "LAW", tasks: "Die LAW ist die Juraabteilung des FIB. Sie kümmert sich um die Jura-Schulung der Mitarbeiter.", icon: Scale, img: lawImg },
 ];
 
 const ranks = [
@@ -348,15 +356,15 @@ const Index = () => {
           <div className="grid sm:grid-cols-2 gap-5">
             {departments.map((dept) => (
               <motion.div key={dept.name} variants={fadeUp}>
-                <Card className="bg-card/40 border-border/30 hover:border-primary/30 transition-all duration-500 backdrop-blur-sm group hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 h-full">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-primary mb-4 group-hover:from-primary/25 group-hover:to-primary/10 transition-all duration-500">
-                      <dept.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2 text-base">{dept.name}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
-                  </CardContent>
-                </Card>
+                <Card className="bg-card/40 border-border/30 hover:border-primary/30 transition-all duration-500 backdrop-blur-sm group hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 h-full overflow-hidden">
+                   <div className="flex items-center justify-center pt-6 px-6">
+                     <img src={dept.img} alt={dept.name} className="w-20 h-20 object-contain rounded-xl" />
+                   </div>
+                   <CardContent className="p-6 pt-4">
+                     <h3 className="font-semibold text-foreground mb-2 text-base">{dept.name}</h3>
+                     <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
+                   </CardContent>
+                 </Card>
               </motion.div>
             ))}
           </div>
