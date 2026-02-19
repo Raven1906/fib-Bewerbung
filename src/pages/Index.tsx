@@ -592,7 +592,7 @@ const Index = () => {
             Federal Investigation Bureau · Bewerbungsdokument
           </p>
           <p className="text-[10px] text-muted-foreground/50 font-mono">
-            Alle Angaben sind Platzhalter · Dokument-Nr. FIB-LB-2026
+                          Dokument-Nr. FIB-LB-2026
           </p>
         </footer>
       </main>
