@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
 import {
   Shield, Target, Users, Award, BookOpen,
-  Star, Crosshair, Scale, Eye, Briefcase, GraduationCap
+  Star, Crosshair, Scale, Eye, Briefcase, GraduationCap, ChevronDown
 } from "lucide-react";
 
 import hrImg from "@/assets/departments/hr.png";
@@ -70,68 +71,240 @@ const rankTiers = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.06 } },
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 const SectionTitle = ({ children, id, number }: { children: React.ReactNode; id: string; number: string }) => (
   <motion.div
     id={id}
     className="scroll-mt-24 mb-8 mt-16 first:mt-0"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.4 }}
+    transition={{ duration: 0.5 }}
   >
     <div className="flex items-baseline gap-3 mb-2">
-      <span className="text-sm font-mono text-muted-foreground">{number}.</span>
+      <motion.span
+        className="text-sm font-mono text-muted-foreground"
+        initial={{ opacity: 0, scale: 0.5 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, type: "spring" }}
+      >
+        {number}.
+      </motion.span>
       <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">{children}</h2>
     </div>
-    <Separator className="bg-foreground/20" />
+    <motion.div
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      style={{ originX: 0 }}
+    >
+      <Separator className="bg-foreground/20" />
+    </motion.div>
   </motion.div>
 );
 
-const Index = () => {
+const ExpandableDept = ({ dept }: { dept: typeof departments[0] }) => {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div
+      variants={fadeUp}
+      className="border border-border/40 rounded-sm overflow-hidden cursor-pointer group"
+      onClick={() => setExpanded(!expanded)}
+      whileHover={{ scale: 1.01, boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="flex items-center gap-4 p-4">
+        <motion.img
+          src={dept.img}
+          alt={dept.name}
+          className="w-14 h-14 object-contain shrink-0 rounded"
+          whileHover={{ rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 0.4 }}
+        />
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-bold text-foreground">{dept.name}</h3>
+        </div>
+        <motion.div
+          animate={{ rotate: expanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+        </motion.div>
+      </div>
+      <motion.div
+        initial={false}
+        animate={{ height: expanded ? "auto" : 0, opacity: expanded ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <div className="px-4 pb-4 pt-0">
+          <Separator className="bg-border/30 mb-3" />
+          <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    {/* Floating orbs */}
+    {[...Array(5)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute rounded-full"
+        style={{
+          width: 200 + i * 100,
+          height: 200 + i * 100,
+          background: `radial-gradient(circle, hsl(40 20% ${88 - i * 2}% / 0.4), transparent 70%)`,
+          left: `${10 + i * 18}%`,
+          top: `${5 + i * 15}%`,
+        }}
+        animate={{
+          x: [0, 30, -20, 10, 0],
+          y: [0, -20, 30, -10, 0],
+          scale: [1, 1.05, 0.95, 1.02, 1],
+        }}
+        transition={{
+          duration: 15 + i * 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    ))}
+    {/* Subtle grid pattern */}
+    <div
+      className="absolute inset-0 opacity-[0.03]"
+      style={{
+        backgroundImage: `
+          linear-gradient(hsl(0 0% 10%) 1px, transparent 1px),
+          linear-gradient(90deg, hsl(0 0% 10%) 1px, transparent 1px)
+        `,
+        backgroundSize: "60px 60px",
+      }}
+    />
+  </div>
+);
+
+const ProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-0.5 bg-foreground/80 z-50 origin-left"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+};
+
+const Index = () => {
+  const { scrollYProgress } = useScroll();
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0.95]);
+
+  return (
+    <div className="min-h-screen bg-background relative">
+      <AnimatedBackground />
+      <ProgressBar />
+
       {/* DOCUMENT HEADER */}
-      <header className="border-b-2 border-foreground/20">
+      <header className="border-b-2 border-foreground/20 relative z-10">
         <motion.div
           className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-20 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ opacity: headerOpacity }}
         >
-          <div className="flex justify-center mb-6">
-            <img src={tdImg} alt="FIB Seal" className="w-24 h-24 md:w-32 md:h-32 object-contain" />
-          </div>
+          <motion.div
+            className="flex justify-center mb-6"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+          >
+            <motion.img
+              src={tdImg}
+              alt="FIB Seal"
+              className="w-24 h-24 md:w-32 md:h-32 object-contain"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            />
+          </motion.div>
 
-          <p className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-4 font-mono">
+          <motion.p
+            className="text-xs tracking-[0.4em] uppercase text-muted-foreground mb-4 font-mono"
+            initial={{ opacity: 0, letterSpacing: "0.8em" }}
+            animate={{ opacity: 1, letterSpacing: "0.4em" }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
             Federal Investigation Bureau · Vertraulich
-          </p>
+          </motion.p>
 
-          <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-4">
+          <motion.h1
+            className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             Bewerbung als Leader des FIB
-          </h1>
+          </motion.h1>
 
-          <Separator className="max-w-xs mx-auto bg-foreground/30 my-6" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Separator className="max-w-xs mx-auto bg-foreground/30 my-6" />
+          </motion.div>
 
-          <p className="text-sm text-muted-foreground tracking-wide uppercase">
+          <motion.p
+            className="text-sm text-muted-foreground tracking-wide uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
             Struktur · Führung · Professionelles Roleplay
-          </p>
+          </motion.p>
 
-          <p className="text-xs text-muted-foreground/60 mt-4 font-mono">
+          <motion.p
+            className="text-xs text-muted-foreground/60 mt-4 font-mono"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
             Dokument-Nr. FIB-LB-2026 · Klassifizierung: Intern
-          </p>
+          </motion.p>
+
+          {/* Scroll indicator */}
+          <motion.div
+            className="mt-8"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-5 h-5 mx-auto text-muted-foreground/40" />
+          </motion.div>
         </motion.div>
       </header>
 
       {/* DOCUMENT BODY */}
-      <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 space-y-4">
+      <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 space-y-4 relative z-10">
 
         {/* TABLE OF CONTENTS */}
         <motion.section
@@ -153,9 +326,13 @@ const Index = () => {
                 href={`#${s.id}`}
                 className="flex items-center gap-3 py-2 border-b border-border/50 hover:bg-muted/50 px-2 -mx-2 transition-colors group"
                 variants={fadeUp}
+                whileHover={{ x: 6, backgroundColor: "hsl(40 10% 90% / 0.5)" }}
+                transition={{ duration: 0.2 }}
               >
                 <span className="text-sm font-mono text-muted-foreground w-8">{String(i + 1).padStart(2, "0")}</span>
-                <s.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <motion.div whileHover={{ rotate: 15 }} transition={{ type: "spring" }}>
+                  <s.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                </motion.div>
                 <span className="text-sm text-foreground">{s.label}</span>
                 <span className="flex-1 border-b border-dotted border-muted-foreground/30 mx-2 mb-1" />
                 <span className="text-xs text-muted-foreground font-mono">§{i + 1}</span>
@@ -168,17 +345,17 @@ const Index = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <SectionTitle id="ic-ooc" number="01">IC & OOC Informationen</SectionTitle>
           <div className="grid md:grid-cols-2 gap-8">
-            <motion.div variants={fadeUp}>
+            <motion.div variants={slideInLeft}>
               <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
                 IC – In Character
               </h3>
               <table className="w-full text-sm">
                 <tbody>
                   {[["Name", "[IC Name]"], ["Alter", "[IC Alter]"], ["Dienstzeit", "[IC Dienstzeit]"]].map(([label, value]) => (
-                    <tr key={label} className="border-b border-border/30">
+                    <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
                       <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
                       <td className="py-2 text-foreground font-medium">{value}</td>
-                    </tr>
+                    </motion.tr>
                   ))}
                 </tbody>
               </table>
@@ -195,10 +372,10 @@ const Index = () => {
               <table className="w-full text-sm">
                 <tbody>
                   {[["Alter", "[OOC Alter]"], ["Onlinezeiten", "[Onlinezeiten]"], ["RP Erfahrung", "[RP Erfahrung]"], ["Führungserfahrung", "[Führungserfahrung]"]].map(([label, value]) => (
-                    <tr key={label} className="border-b border-border/30">
+                    <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
                       <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
                       <td className="py-2 text-foreground font-medium">{value}</td>
-                    </tr>
+                    </motion.tr>
                   ))}
                 </tbody>
               </table>
@@ -216,14 +393,19 @@ const Index = () => {
           <p className="text-sm text-foreground leading-relaxed mb-6">
             [Hier beschreibt ihr, warum ihr die Leitung des FIB übernehmen möchtet. Was treibt euch an? Welche Vision habt ihr für die Organisation?]
           </p>
-          <ul className="space-y-3 pl-4">
+          <motion.ul className="space-y-3 pl-4" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {["[Motivationspunkt 1]", "[Motivationspunkt 2]", "[Motivationspunkt 3]"].map((p, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm">
+              <motion.li
+                key={i}
+                className="flex items-start gap-3 text-sm"
+                variants={slideInLeft}
+                whileHover={{ x: 4 }}
+              >
                 <span className="text-muted-foreground font-mono text-xs mt-0.5">{String.fromCharCode(97 + i)})</span>
                 <span className="text-foreground">{p}</span>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </motion.section>
 
         {/* QUALITIES */}
@@ -231,10 +413,20 @@ const Index = () => {
           <SectionTitle id="qualities" number="03">Was mich als Leader auszeichnet</SectionTitle>
           <div className="space-y-4">
             {qualities.map((q, i) => (
-              <motion.div key={q.title} variants={fadeUp} className="flex items-start gap-4 py-3 border-b border-border/30">
-                <div className="w-8 h-8 rounded border border-border flex items-center justify-center text-muted-foreground shrink-0 mt-0.5">
+              <motion.div
+                key={q.title}
+                variants={fadeUp}
+                className="flex items-start gap-4 py-3 border-b border-border/30 cursor-default"
+                whileHover={{ x: 6, backgroundColor: "hsl(40 10% 93% / 0.5)" }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.div
+                  className="w-8 h-8 rounded border border-border flex items-center justify-center text-muted-foreground shrink-0 mt-0.5"
+                  whileHover={{ scale: 1.2, rotate: 10, borderColor: "hsl(0 0% 10%)" }}
+                  transition={{ type: "spring" }}
+                >
                   <q.icon className="w-4 h-4" />
-                </div>
+                </motion.div>
                 <div>
                   <h3 className="text-sm font-bold text-foreground mb-1">{String(i + 1).padStart(2, "0")}. {q.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{q.desc}</p>
@@ -249,10 +441,19 @@ const Index = () => {
           <SectionTitle id="rp-improvements" number="04">Vorschläge zur Verbesserung des Roleplays</SectionTitle>
           <div className="space-y-4">
             {rpImprovements.map((item, i) => (
-              <motion.div key={i} variants={fadeUp} className="flex items-start gap-4 py-3 border-b border-border/30">
-                <span className="text-lg font-bold text-muted-foreground/40 font-mono w-8 shrink-0 text-right">
+              <motion.div
+                key={i}
+                variants={scaleIn}
+                className="flex items-start gap-4 py-3 border-b border-border/30"
+                whileHover={{ scale: 1.01, x: 4 }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.span
+                  className="text-lg font-bold text-muted-foreground/40 font-mono w-8 shrink-0 text-right"
+                  whileHover={{ color: "hsl(0 0% 10%)", scale: 1.1 }}
+                >
                   {String(i + 1).padStart(2, "0")}
-                </span>
+                </motion.span>
                 <div>
                   <h3 className="text-sm font-bold text-foreground mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -265,15 +466,9 @@ const Index = () => {
         {/* DEPARTMENTS */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <SectionTitle id="departments" number="05">Abteilungskonzept</SectionTitle>
-          <div className="space-y-6">
+          <div className="space-y-3">
             {departments.map((dept) => (
-              <motion.div key={dept.name} variants={fadeUp} className="flex gap-5 py-4 border-b border-border/30">
-                <img src={dept.img} alt={dept.name} className="w-16 h-16 object-contain shrink-0 rounded" />
-                <div>
-                  <h3 className="text-sm font-bold text-foreground mb-1">{dept.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{dept.tasks}</p>
-                </div>
-              </motion.div>
+              <ExpandableDept key={dept.name} dept={dept} />
             ))}
           </div>
         </motion.section>
@@ -289,10 +484,15 @@ const Index = () => {
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1">
                   {ranks.slice(tier.range[0], tier.range[1]).map((r) => (
-                    <div key={r.number} className="border border-border/40 px-2 py-2 text-center">
+                    <motion.div
+                      key={r.number}
+                      className="border border-border/40 px-2 py-2 text-center cursor-default"
+                      whileHover={{ scale: 1.05, borderColor: "hsl(0 0% 30%)", zIndex: 10 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
                       <span className="text-[10px] text-muted-foreground font-mono font-bold">{r.number}</span>
                       <p className="text-[11px] text-foreground mt-0.5 leading-tight">{r.name}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -306,10 +506,10 @@ const Index = () => {
                   ["Aktivitätsanforderung", "[Anforderung hier eintragen]"],
                   ["Interne Bewertungen", "[Bewertungssystem hier beschreiben]"],
                 ].map(([label, value]) => (
-                  <tr key={label} className="border-b border-border/30">
+                  <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
                     <td className="py-2 text-muted-foreground pr-4">{label}</td>
                     <td className="py-2 text-foreground">{value}</td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
@@ -319,15 +519,27 @@ const Index = () => {
         {/* CLOSING */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <SectionTitle id="closing" number="07">Schlusswort</SectionTitle>
-          <div className="border-l-2 border-foreground/20 pl-6 py-2">
+          <motion.div
+            className="border-l-2 border-foreground/20 pl-6 py-2"
+            whileHover={{ borderColor: "hsl(0 0% 10%)", paddingLeft: "2rem" }}
+            transition={{ duration: 0.3 }}
+          >
             <p className="text-sm text-foreground leading-relaxed italic">
               [Hier kommt euer abschließender Text hin – Zusammenfassung eurer Vision, Dank an die Leser, und warum ihr der richtige Kandidat für die Leitung des FIB seid.]
             </p>
-          </div>
+          </motion.div>
         </motion.section>
 
         {/* DOCUMENT FOOTER */}
-        <Separator className="bg-foreground/20 mt-16" />
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{ originX: 0.5 }}
+        >
+          <Separator className="bg-foreground/20 mt-16" />
+        </motion.div>
         <footer className="text-center py-8 space-y-2">
           <p className="text-xs text-muted-foreground font-mono tracking-wider uppercase">
             Federal Investigation Bureau · Bewerbungsdokument
