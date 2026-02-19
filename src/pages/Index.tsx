@@ -418,7 +418,7 @@ const Index = () => {
               </h3>
               <table className="w-full text-sm">
                 <tbody>
-                  {[["Alter", "18"], ["Name", "Paul"], ["Discord Name", "loudenbous"]].map(([label, value]) => (
+                  {[["Alter", "18 Jahre"], ["Name", "Paul"], ["Discord Name", "loudenbous"]].map(([label, value]) => (
                     <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
                       <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
                       <td className="py-2 text-foreground font-medium">{value}</td>
