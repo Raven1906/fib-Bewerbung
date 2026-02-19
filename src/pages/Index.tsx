@@ -167,37 +167,54 @@ const ExpandableDept = ({ dept }: { dept: typeof departments[0] }) => {
 
 const AnimatedBackground = () => (
   <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    {/* Floating orbs */}
-    {[...Array(5)].map((_, i) => (
+    {/* Animated gradient waves */}
+    <motion.div
+      className="absolute inset-0"
+      style={{
+        background: `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
+      }}
+      animate={{
+        background: [
+          `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
+          `linear-gradient(225deg, hsl(205 55% 94%) 0%, hsl(215 65% 91%) 30%, hsl(208 60% 95%) 60%, hsl(210 70% 93%) 100%)`,
+          `linear-gradient(315deg, hsl(210 70% 93%) 0%, hsl(208 60% 96%) 30%, hsl(215 65% 90%) 60%, hsl(205 55% 94%) 100%)`,
+          `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
+        ],
+      }}
+      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+    />
+    {/* Floating blue orbs */}
+    {[...Array(6)].map((_, i) => (
       <motion.div
         key={i}
         className="absolute rounded-full"
         style={{
-          width: 200 + i * 100,
-          height: 200 + i * 100,
-          background: `radial-gradient(circle, hsl(40 20% ${88 - i * 2}% / 0.4), transparent 70%)`,
-          left: `${10 + i * 18}%`,
-          top: `${5 + i * 15}%`,
+          width: 180 + i * 120,
+          height: 180 + i * 120,
+          background: `radial-gradient(circle, hsl(210 ${50 + i * 5}% ${85 - i * 3}% / 0.35), transparent 70%)`,
+          left: `${5 + i * 16}%`,
+          top: `${-5 + i * 14}%`,
         }}
         animate={{
-          x: [0, 30, -20, 10, 0],
-          y: [0, -20, 30, -10, 0],
-          scale: [1, 1.05, 0.95, 1.02, 1],
+          x: [0, 40, -30, 20, 0],
+          y: [0, -30, 40, -15, 0],
+          scale: [1, 1.08, 0.92, 1.04, 1],
         }}
         transition={{
-          duration: 15 + i * 3,
+          duration: 12 + i * 4,
           repeat: Infinity,
           ease: "easeInOut",
+          delay: i * 1.5,
         }}
       />
     ))}
     {/* Subtle grid pattern */}
     <div
-      className="absolute inset-0 opacity-[0.03]"
+      className="absolute inset-0 opacity-[0.025]"
       style={{
         backgroundImage: `
-          linear-gradient(hsl(0 0% 10%) 1px, transparent 1px),
-          linear-gradient(90deg, hsl(0 0% 10%) 1px, transparent 1px)
+          linear-gradient(hsl(210 30% 50%) 1px, transparent 1px),
+          linear-gradient(90deg, hsl(210 30% 50%) 1px, transparent 1px)
         `,
         backgroundSize: "60px 60px",
       }}
