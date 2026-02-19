@@ -167,56 +167,86 @@ const ExpandableDept = ({ dept }: { dept: typeof departments[0] }) => {
 
 const AnimatedBackground = () => (
   <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    {/* Animated gradient waves */}
+    {/* Dark base */}
+    <div className="absolute inset-0 bg-background" />
+    
+    {/* Sweeping blue light beam */}
     <motion.div
-      className="absolute inset-0"
+      className="absolute"
       style={{
-        background: `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
+        width: "200%",
+        height: "200%",
+        top: "-50%",
+        left: "-50%",
+        background: `conic-gradient(from 0deg, transparent 0deg, hsl(215 100% 55% / 0.07) 15deg, transparent 30deg, transparent 180deg, hsl(215 100% 55% / 0.05) 195deg, transparent 210deg)`,
       }}
-      animate={{
-        background: [
-          `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
-          `linear-gradient(225deg, hsl(205 55% 94%) 0%, hsl(215 65% 91%) 30%, hsl(208 60% 95%) 60%, hsl(210 70% 93%) 100%)`,
-          `linear-gradient(315deg, hsl(210 70% 93%) 0%, hsl(208 60% 96%) 30%, hsl(215 65% 90%) 60%, hsl(205 55% 94%) 100%)`,
-          `linear-gradient(135deg, hsl(208 60% 96%) 0%, hsl(210 70% 92%) 30%, hsl(205 55% 94%) 60%, hsl(215 65% 90%) 100%)`,
-        ],
-      }}
-      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      animate={{ rotate: [0, 360] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
     />
-    {/* Floating blue orbs */}
-    {[...Array(6)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute rounded-full"
-        style={{
-          width: 180 + i * 120,
-          height: 180 + i * 120,
-          background: `radial-gradient(circle, hsl(210 ${50 + i * 5}% ${85 - i * 3}% / 0.35), transparent 70%)`,
-          left: `${5 + i * 16}%`,
-          top: `${-5 + i * 14}%`,
-        }}
-        animate={{
-          x: [0, 40, -30, 20, 0],
-          y: [0, -30, 40, -15, 0],
-          scale: [1, 1.08, 0.92, 1.04, 1],
-        }}
-        transition={{
-          duration: 12 + i * 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: i * 1.5,
-        }}
-      />
-    ))}
-    {/* Subtle grid pattern */}
-    <div
-      className="absolute inset-0 opacity-[0.025]"
+
+    {/* Pulsing blue glow - center */}
+    <motion.div
+      className="absolute rounded-full"
       style={{
-        backgroundImage: `
-          linear-gradient(hsl(210 30% 50%) 1px, transparent 1px),
-          linear-gradient(90deg, hsl(210 30% 50%) 1px, transparent 1px)
-        `,
-        backgroundSize: "60px 60px",
+        width: 600,
+        height: 600,
+        left: "50%",
+        top: "30%",
+        transform: "translate(-50%, -50%)",
+        background: `radial-gradient(circle, hsl(215 100% 50% / 0.12), transparent 70%)`,
+      }}
+      animate={{ scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    />
+
+    {/* Flashing blue lights - left */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: 300,
+        height: 300,
+        left: "5%",
+        top: "15%",
+        background: `radial-gradient(circle, hsl(220 100% 60% / 0.2), transparent 70%)`,
+      }}
+      animate={{ opacity: [0, 1, 0, 0.7, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    />
+
+    {/* Flashing blue lights - right */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: 250,
+        height: 250,
+        right: "8%",
+        top: "20%",
+        background: `radial-gradient(circle, hsl(210 100% 65% / 0.18), transparent 70%)`,
+      }}
+      animate={{ opacity: [0, 0.8, 0, 1, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+    />
+
+    {/* Ambient moving glow bottom */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: 800,
+        height: 400,
+        bottom: "-10%",
+        left: "20%",
+        background: `radial-gradient(ellipse, hsl(215 90% 50% / 0.08), transparent 70%)`,
+      }}
+      animate={{ x: [0, 100, -50, 0], opacity: [0.5, 0.8, 0.4, 0.5] }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+    />
+
+    {/* Scan lines */}
+    <div
+      className="absolute inset-0 opacity-[0.03]"
+      style={{
+        backgroundImage: `repeating-linear-gradient(0deg, hsl(215 100% 60%) 0px, transparent 1px, transparent 3px)`,
+        backgroundSize: "100% 3px",
       }}
     />
   </div>
@@ -226,8 +256,8 @@ const ProgressBar = () => {
   const { scrollYProgress } = useScroll();
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-0.5 bg-foreground/80 z-50 origin-left"
-      style={{ scaleX: scrollYProgress }}
+      className="fixed top-0 left-0 right-0 h-1 z-50 origin-left"
+      style={{ scaleX: scrollYProgress, background: "linear-gradient(90deg, hsl(215 100% 50%), hsl(210 100% 70%))", boxShadow: "0 0 12px hsl(215 100% 55% / 0.8), 0 0 30px hsl(215 100% 55% / 0.4)" }}
     />
   );
 };
