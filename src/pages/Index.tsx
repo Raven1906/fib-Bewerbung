@@ -448,22 +448,27 @@ const Index = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="mt-4">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Werdegang</p>
-                <p className="text-sm text-foreground leading-relaxed">[Staatliche Organisationen:
-                                                                         LSPD: Rang 13, Sophia Hagedorn
-                                                                         FIB: Rang 16, Maximilian Bianchi
-                                                                         USSS: Rang 16, Nico Schlumpf
-                                                                         NG: Rang 23, Marc Bianchi                                                           
-                  
-                                                                       Kriminelle Organisationen:
-                                                                         Ballas: Rang 10, Ella Next
-                                                                         Bloods: Rang 12, Paul Blaq
-                                                                         Mara: Rang 11, Yasin Korkmaz
-                                                                         Vagos: Rang 9, Shirin Coco
-                                                                         Grove: Rang 11, Noah Raiin 
-                                                                         Blackout: Leader,Pau lBlaq </p>
-              </div>
+         <div className="mt-4">
+  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">
+    Werdegang
+  </p>
+
+  <ul className="text-sm text-foreground leading-relaxed space-y-1 list-disc list-inside">
+    <li className="font-semibold mt-2">Staatliche Organisationen:</li>
+    <li>LSPD: Rang 13, Sophia Hagedorn</li>
+    <li>FIB: Rang 16, Maximilian Bianchi</li>
+    <li>USSS: Rang 16, Nico Schlumpf</li>
+    <li>NG: Rang 23, Marc Bianchi</li>
+
+    <li className="font-semibold mt-3">Kriminelle Organisationen:</li>
+    <li>Ballas: Rang 10, Ella Next</li>
+    <li>Bloods: Rang 12, Paul Blaq</li>
+    <li>Mara: Rang 11, Yasin Korkmaz</li>
+    <li>Vagos: Rang 9, Shirin Coco</li>
+    <li>Grove: Rang 11, Noah Raiin</li>
+    <li>Blackout: Leader, Paul Blaq</li>
+  </ul>
+</div>
             </motion.div>
 
             <motion.div variants={fadeUp}>
