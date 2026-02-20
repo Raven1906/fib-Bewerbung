@@ -450,7 +450,19 @@ const Index = () => {
               </table>
               <div className="mt-4">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Werdegang</p>
-                <p className="text-sm text-foreground leading-relaxed">[Hier kommt eure IC Beschreibung hin – Werdegang, Vision, Erfahrung des Charakters.]</p>
+                <p className="text-sm text-foreground leading-relaxed">[Staatliche Organisationen:
+                                                                         LSPD: Rang 13, Sophia Hagedorn
+                                                                         FIB: Rang 16, Maximilian Bianchi
+                                                                         USSS: Rang 16, Nico Schlumpf
+                                                                         NG: Rang 23, Marc Bianchi                                                           
+                  
+                                                                       Kriminelle Organisationen:
+                                                                         Ballas: Rang 10, Ella Next
+                                                                         Bloods: Rang 12, Paul Blaq
+                                                                         Mara: Rang 11, Yasin Korkmaz
+                                                                         Vagos: Rang 9, Shirin Coco
+                                                                         Grove: Rang 11, Noah Raiin 
+                                                                         Blackout: Leader,Pau lBlaq]</p>
               </div>
             </motion.div>
 
