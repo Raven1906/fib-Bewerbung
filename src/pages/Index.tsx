@@ -462,7 +462,7 @@ const Index = () => {
                                                                          Mara: Rang 11, Yasin Korkmaz
                                                                          Vagos: Rang 9, Shirin Coco
                                                                          Grove: Rang 11, Noah Raiin 
-                                                                         Blackout: Leader,Pau lBlaq]</p>
+                                                                         Blackout: Leader,Pau lBlaq </p>
               </div>
             </motion.div>
 
