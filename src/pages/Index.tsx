@@ -455,7 +455,7 @@ const Index = () => {
   <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4 font-bold">Werdegang</p>
   
 
-  <div className="grid grid-cols-1 gap-1 text-sm text-foreground leading-relaxed">
+  <div className="grid grid-cols-1 gap-0 text-sm text-foreground leading-relaxed">
     
     <div>
       <p className="font-semibold mb-2">Staatliche:</p>
