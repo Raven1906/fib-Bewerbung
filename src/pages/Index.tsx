@@ -474,7 +474,7 @@ const Index = () => {
         <li>Ballas: Rang 10, Ella Next</li>
         <li>Bloods: Rang 12, Paul Blaq</li>
         <li>Mara: Rang 11, Yasin Korkmaz</li>
-        <li>Vagos: Rang 99, Shirin Coco</li>
+        <li>Vagos: Rang 9, Shirin Coco</li>
         <li>Grove: Rang 11, Noah Raiin </li>
         <li>Blackout: Leader</li>
       </ul>
