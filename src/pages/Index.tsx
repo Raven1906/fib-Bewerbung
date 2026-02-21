@@ -430,95 +430,71 @@ const Index = () => {
           </div>
         </motion.section>
 
-        {/* IC & OOC */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          <SectionTitle id="ic-ooc" number="01">IC & OOC Informationen</SectionTitle>
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div variants={slideInLeft}>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
-                IC – In Character
-              </h3>
-              <table className="w-full text-sm">
-                <tbody>
-                  {[["Name", "Paul Blaq"], ["Visum", "60"], ["ID:", "168494"]].map(([label, value]) => (
-                    <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
-                      <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
-                      <td className="py-2 text-foreground font-medium">{value}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-    <div className="mt-4">
-  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">
-    Werdegang
-  </p>
+       {/* IC & OOC */}
+<motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+  <SectionTitle id="ic-ooc" number="01">IC & OOC Informationen</SectionTitle>
+  <div className="grid md:grid-cols-2 gap-8">
+    
+    <motion.div variants={slideInLeft}>
+      <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
+        IC – In Character
+      </h3>
+      <table className="w-full text-sm">
+        <tbody>
+          {[["Name", "Paul Blaq"], ["Visum", "60"], ["ID:", "168494"]].map(([label, value]) => (
+            <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
+              <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
+              <td className="py-2 text-foreground font-medium">{value}</td>
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
+      
+      <div className="mt-4">
+        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Werdegang</p>
+        <div className="text-sm text-foreground leading-relaxed space-y-3">
+          <div>
+            <p className="font-semibold mb-1">Staatliche Organisationen:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>LSPD: Rang 13, Sophia Hagedorn</li>
+              <li>FIB: Rang 16, Maximilian Bianchi</li>
+              <li>USSS: Rang 16, Nico Schlumpf</li>
+              <li>NG: Rang 23, Marc Bianchi</li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold mb-1">Kriminelle Organisationen:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Ballas: Rang 10, Ella Next</li>
+              <li>Bloods: Rang 12, Paul Blaq</li>
+              <li>Mara: Rang 11, Yasin Korkmaz</li>
+              <li>Vagos: Rang 9, Shirin Coco</li>
+              <li>Grove: Rang 11, Noah Raiin</li>
+              <li>Blackout: Leader, Paul Blaq</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </motion.div>
 
-  <ul className="text-sm text-foreground leading-relaxed space-y-1 list-disc list-inside">
-    <li className="font-semibold mt-2">Staatliche Organisationen:</li>
-    <li>LSPD: Rang 13, Sophia Hagedorn</li>
-    <li>FIB: Rang 16, Maximilian Bianchi</li>
-    <li>USSS: Rang 16, Nico Schlumpf</li>
-    <li>NG: Rang 23, Marc Bianchi</li>
-
-    <li className="font-semibold mt-3">Kriminelle Organisationen:</li>
-    <li>Ballas: Rang 10, Ella Next</li>
-    <li>Bloods: Rang 12, Paul Blaq</li>
-    <li>Mara: Rang 11, Yasin Korkmaz</li>
-    <li>Vagos: Rang 9, Shirin Coco</li>
-    <li>Grove: Rang 11, Noah Raiin</li>
-    <li>Blackout: Leader, Paul Blaq</li>
-  </ul>
-</div>
-            </motion.div>
-
-            <motion.div variants={fadeUp}>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
-                OOC – Out of Character
-              </h3>
-              <table className="w-full text-sm">
-                <tbody>
-                  {[["Alter", "18 Jahre"], ["Name", "Paul"], ["Discord Name", "loudenbous"]].map(([label, value]) => (
-                    <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
-                      <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
-                      <td className="py-2 text-foreground font-medium">{value}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-          <div className="mt-4">
-  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">
-    Werdegang
-  </p>
-
-  <div className="text-sm text-foreground leading-relaxed space-y-3">
-
-    {/* Staatlich */}
-    <div>
-      <p className="font-semibold mb-1">Staatliche Organisationen:</p>
-      <ul className="list-disc list-inside space-y-1">
-        <li>LSPD: Rang 13, Sophia Hagedorn</li>
-        <li>FIB: Rang 16, Maximilian Bianchi</li>
-        <li>USSS: Rang 16, Nico Schlumpf</li>
-        <li>NG: Rang 23, Marc Bianchi</li>
-      </ul>
-    </div>
-
-    {/* Kriminell */}
-    <div>
-      <p className="font-semibold mb-1">Kriminelle Organisationen:</p>
-      <ul className="list-disc list-inside space-y-1">
-        <li>Ballas: Rang 10, Ella Next</li>
-        <li>Bloods: Rang 12, Paul Blaq</li>
-        <li>Mara: Rang 11, Yasin Korkmaz</li>
-        <li>Vagos: Rang 9, Shirin Coco</li>
-        <li>Grove: Rang 11, Noah Raiin</li>
-        <li>Blackout: Leader, Paul Blaq</li>
-      </ul>
-    </div>
+    <motion.div variants={fadeUp}>
+      <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4 border-b border-foreground/10 pb-2">
+        OOC – Out of Character
+      </h3>
+      <table className="w-full text-sm">
+        <tbody>
+          {[["Alter", "18 Jahre"], ["Name", "Paul"], ["Discord Name", "loudenbous"]].map(([label, value]) => (
+            <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
+              <td className="py-2 text-muted-foreground pr-4 w-1/3">{label}</td>
+              <td className="py-2 text-foreground font-medium">{value}</td>
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
+    </motion.div>
 
   </div>
-</div>
-        </motion.section>
+</motion.section>
 
         {/* MOTIVATION */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
