@@ -460,21 +460,22 @@ const Index = () => {
     <div>
       <p className="font-semibold mb-2">Staatliche:</p>
       <ul className="list-disc list-inside space-y-1">
-        <li>LSPD: Rang 13</li>
-        <li>FIB: Rang 16</li>
-        <li>USSS: Rang 16</li>
-        <li>NG: Rang 23</li>
+        <li>LSPD: Rang 13, Sophia Hagedorn</li>
+        <li>FIB: Rang 16, Maximilian Bianchi</li>
+        <li>USSS: Rang 16, Nico Schlumpf</li>
+        <li>NG: Rang 23, Marc Bianchi</li>
+        <li>SAHP: Rang 25, Luka Einker</li>
       </ul>
     </div>
 
     <div>
       <p className="font-semibold mb-2">Kriminelle:</p>
       <ul className="list-disc list-inside space-y-1">
-        <li>Ballas: Rang 10</li>
-        <li>Bloods: Rang 12</li>
-        <li>Mara: Rang 11</li>
-        <li>Vagos: Rang 9</li>
-        <li>Grove: Rang 11</li>
+        <li>Ballas: Rang 10, Ella Next</li>
+        <li>Bloods: Rang 12, Paul Blaq</li>
+        <li>Mara: Rang 11, Yasin Korkmaz</li>
+        <li>Vagos: Rang 99, Shirin Coco</li>
+        <li>Grove: Rang 11, Noah Raiin </li>
         <li>Blackout: Leader</li>
       </ul>
     </div>
