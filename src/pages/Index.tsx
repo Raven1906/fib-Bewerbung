@@ -485,11 +485,15 @@ const Index = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="mt-4">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">Über mich</p>
-                <p className="text-sm text-foreground leading-relaxed">[Hier kommt eure OOC Beschreibung hin – Motivation, Verantwortungsbewusstsein, Aktivität.]</p>
-              </div>
-            </motion.div>
+              <li className="font-semibold mt-3">Kriminelle Organisationen:</li>
+    <li>Ballas: Rang 10, Ella Next</li>
+    <li>Bloods: Rang 12, Paul Blaq</li>
+    <li>Mara: Rang 11, Yasin Korkmaz</li>
+    <li>Vagos: Rang 9, Shirin Coco</li>
+    <li>Grove: Rang 11, Noah Raiin</li>
+    <li>Blackout: Leader, Paul Blaq</li>
+  </ul>
+</div>
           </div>
         </motion.section>
 
