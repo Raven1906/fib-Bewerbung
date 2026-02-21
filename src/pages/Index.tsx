@@ -460,13 +460,7 @@ const Index = () => {
     <li>USSS: Rang 16, Nico Schlumpf</li>
     <li>NG: Rang 23, Marc Bianchi</li>
 
-    <li className="font-semibold mt-3">Kriminelle Organisationen:</li>
-    <li>Ballas: Rang 10, Ella Next</li>
-    <li>Bloods: Rang 12, Paul Blaq</li>
-    <li>Mara: Rang 11, Yasin Korkmaz</li>
-    <li>Vagos: Rang 9, Shirin Coco</li>
-    <li>Grove: Rang 11, Noah Raiin</li>
-    <li>Blackout: Leader, Paul Blaq</li>
+   
   </ul>
 </div>
             </motion.div>
