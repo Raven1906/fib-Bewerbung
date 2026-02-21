@@ -506,10 +506,10 @@ const Index = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <SectionTitle id="motivation" number="02">Warum ich Leader werden möchte</SectionTitle>
           <p className="text-sm text-foreground leading-relaxed mb-6">
-            [Hier beschreibt ihr, warum ihr die Leitung des FIB übernehmen möchtet. Was treibt euch an? Welche Vision habt ihr für die Organisation?]
+            
           </p>
           <motion.ul className="space-y-3 pl-4" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {["[Motivationspunkt 1]", "[Motivationspunkt 2]", "[Motivationspunkt 3]"].map((p, i) => (
+            {["[Motivationspunkt 1]"].map((p, i) => (
               <motion.li
                 key={i}
                 className="flex items-start gap-3 text-sm"
