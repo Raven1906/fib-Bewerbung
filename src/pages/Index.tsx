@@ -34,11 +34,11 @@ const qualities = [
 ];
 
 const rpImprovements = [
-  { title: "Realistische Einsatzprotokolle", desc: "Einführung standardisierter Abläufe für Ermittlungen, Festnahmen und Razzien." },
-  { title: "Interne Fortbildungen", desc: "Regelmäßige Schulungen und RP-Trainings für alle Mitglieder." },
-  { title: "Inter-Org Kooperationen", desc: "Strukturierte Zusammenarbeit mit anderen Organisationen für gemeinsame Einsätze." },
-  { title: "Aktenführung & Dokumentation", desc: "Digitale Fallakten und Dokumentation aller laufenden Ermittlungen." },
-  { title: "Event-basiertes RP", desc: "Regelmäßige Story-Arcs und Events, die das RP bereichern und Mitglieder einbinden." },
+  { title: "Event Aktivität", desc: "Wir fahren aktiv alle Events an. Die Aktivität wird belohnt." },
+  { title: "Wantedjagt", desc: "Es wird es alle zwei Wochen ein UC Event geben bei dem alle mit der UC Prüfung ausschließlich Wanteds und beweise sammeln. Mit einer Belohnung für die Aktivsten." },
+  { title: "Verhalten", desc: "Freundlichkeit steht an erster Stelle. Das Verhalten ist extrem wichtig. Jedes Fehlverhalten, das zu weit geht oder jemanden verletzt/belästigt, wird strikt geahndet. ." },
+  { title: "Organisationsübergreifende zusammenarbeit", desc: "Wir möchten aktiv organisationsübergreifend zusammenarbeiten mit jeglichen Orgas, um das Role-Play für alle zu fördern und die geltenden Rechte strikt durchzusetzen." },
+  { title: "Beiweissammlung", desc: "Beweise werden aktiv gesammelt, um das Gesetz strikt zu vollstrecken. Beweise werden auch gesammelt, u. a. um Gangs und illegale Strukturen zu Zerschlagen ." },
 ];
 
 const departments = [
@@ -67,7 +67,7 @@ const rankTiers = [
   { label: "Command (13–16)", range: [12, 16] },
   { label: "Highcommand (17–23)", range: [16, 23] },
   { label: "Abteilungsleiter / Curator / Personalverwaltung (24–27)", range: [23, 27] },
-  { label: "Head Leaderschaft + Leaderschaft (28–30)", range: [27, 30] },
+  { label: "Leaderschaft (28–30)", range: [27, 30] },
 ];
 
 const fadeUp = {
@@ -617,9 +617,7 @@ const Index = () => {
             <table className="w-full text-sm">
               <tbody>
                 {[
-                  ["Beförderungskriterien", "[Kriterien hier eintragen]"],
-                  ["Aktivitätsanforderung", "[Anforderung hier eintragen]"],
-                  ["Interne Bewertungen", "[Bewertungssystem hier beschreiben]"],
+                  ["Beförderungskriterien", "Aktivität,Abteilungsarbeit"],
                 ].map(([label, value]) => (
                   <motion.tr key={label} className="border-b border-border/30" whileHover={{ backgroundColor: "hsl(40 10% 92% / 0.5)" }}>
                     <td className="py-2 text-muted-foreground pr-4">{label}</td>
@@ -640,7 +638,7 @@ const Index = () => {
             transition={{ duration: 0.3 }}
           >
             <p className="text-sm text-foreground leading-relaxed italic">
-              [Hier kommt euer abschließender Text hin – Zusammenfassung eurer Vision, Dank an die Leser, und warum ihr der richtige Kandidat für die Leitung des FIB seid.]
+              Abschließend möchte ich mich herzlich dafür bedanken, dass ihr euch die Zeit genommen habt, meine Bewerbung zu lesen. Ich hoffe, ich konnte mit meinen Ideen und meiner Motivation überzeugen.
             </p>
           </motion.div>
         </motion.section>
