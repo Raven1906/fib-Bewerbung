@@ -485,26 +485,38 @@ const Index = () => {
                   ))}
                 </tbody>
               </table>
-           <div className="mt-4">
+          <div className="mt-4">
   <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-bold">
     Werdegang
   </p>
 
-  <ul className="text-sm text-foreground leading-relaxed space-y-1 list-disc list-inside">
-    <li className="font-semibold mt-2">Staatliche Organisationen:</li>
-    <li>LSPD: Rang 13, Sophia Hagedorn</li>
-    <li>FIB: Rang 16, Maximilian Bianchi</li>
-    <li>USSS: Rang 16, Nico Schlumpf</li>
-    <li>NG: Rang 23, Marc Bianchi</li>
+  <div className="text-sm text-foreground leading-relaxed space-y-3">
 
-    <li className="font-semibold mt-3">Kriminelle Organisationen:</li>
-    <li>Ballas: Rang 10, Ella Next</li>
-    <li>Bloods: Rang 12, Paul Blaq</li>
-    <li>Mara: Rang 11, Yasin Korkmaz</li>
-    <li>Vagos: Rang 9, Shirin Coco</li>
-    <li>Grove: Rang 11, Noah Raiin</li>
-    <li>Blackout: Leader, Paul Blaq</li>
-  </ul>
+    {/* Staatlich */}
+    <div>
+      <p className="font-semibold mb-1">Staatliche Organisationen:</p>
+      <ul className="list-disc list-inside space-y-1">
+        <li>LSPD: Rang 13, Sophia Hagedorn</li>
+        <li>FIB: Rang 16, Maximilian Bianchi</li>
+        <li>USSS: Rang 16, Nico Schlumpf</li>
+        <li>NG: Rang 23, Marc Bianchi</li>
+      </ul>
+    </div>
+
+    {/* Kriminell */}
+    <div>
+      <p className="font-semibold mb-1">Kriminelle Organisationen:</p>
+      <ul className="list-disc list-inside space-y-1">
+        <li>Ballas: Rang 10, Ella Next</li>
+        <li>Bloods: Rang 12, Paul Blaq</li>
+        <li>Mara: Rang 11, Yasin Korkmaz</li>
+        <li>Vagos: Rang 9, Shirin Coco</li>
+        <li>Grove: Rang 11, Noah Raiin</li>
+        <li>Blackout: Leader, Paul Blaq</li>
+      </ul>
+    </div>
+
+  </div>
 </div>
         </motion.section>
 
