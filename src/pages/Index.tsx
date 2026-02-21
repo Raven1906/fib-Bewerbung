@@ -29,8 +29,8 @@ const qualities = [
   { title: "Verantwortung ist für mich das Fundament von Führung", desc: " Ich sehe meine Rolle nicht als Privileg, sondern als Aufgabe, der ich mich ganz bewusst stelle. Die Herausforderungen, die ich damit auf mich nehme, nehme ich ernst  und gehe sie mit Ruhe und klarem Kopf an.", icon: Users },
   { title: "Geduld und Diplomatie liegen mir", desc: "Gerade wenn es kompliziert wird, bleibe ich ruhig und überlegt. Mir ist wichtig, auch in schwierigen Situationen ruhig zu entscheiden um das Vertrauen aller Mitglieder zu behalten.", icon: Target },
   { title: "Für mich steht das Team im Mittelpunkt", desc: "Ein guter Leader ist für sein Team da, kümmert sich um die Anliegen der Mitglieder und sorgt dafür, dass sich jeder gehört und wertgeschätzt fühlt. Das nehme ich sehr ernst und tuhe alles was in meiner Macht Steht dafür.", icon: BookOpen },
-  { title: "Ich bringe Einsatz und Weitblick mit", desc: "Ich will nicht nur führen, sondern gemeinsam mit allen die Organisation voranbringen. Mit voller Energie arbeite ich daran, unsere Ziele zu erreichen und unsere Vision Wirklichkeit werden zu lassen. ", icon: Scale },
-  { title: "Ich bringe jede Menge Erfahrung in Organisation und Verwaltung mit", desc: " Da ich in vielen Organisationen war, kenne ich mich perfekt mit den State-/Crime-Regeln aus. Ich war auch Admin und die Leaderregeln. kenne ich perfekt. Und da ich das alles schon durchlebt habe, kenne ich die Handhabung mit schwierigen Strukturen. ", icon: Eye },
+  { title: "Ich bringe Einsatz und Weitblick mit", desc: "Ich will nicht nur führen, sondern gemeinsam mit allen die Organisation voranbringen. Mit voller Energie arbeite ich daran, unsere Ziele zu erreichen und unsere Vision Wirklichkeit werden zu lassen. ", icon: Eye },
+  { title: "Ich bringe jede Menge Erfahrung in Organisation und Verwaltung mit", desc: " Da ich in vielen Organisationen war, kenne ich mich perfekt mit den State-/Crime-Regeln aus. Ich war auch Admin und die Leaderregeln. kenne ich perfekt. Und da ich das alles schon durchlebt habe, kenne ich die Handhabung mit schwierigen Strukturen. ", icon: Scale },
 ];
 
 const rpImprovements = [
