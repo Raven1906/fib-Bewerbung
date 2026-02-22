@@ -639,6 +639,7 @@ const Index = () => {
           >
             <p className="text-sm text-foreground leading-relaxed italic">
               Abschließend möchte ich mich herzlich dafür bedanken, dass ihr euch die Zeit genommen habt, meine Bewerbung zu lesen. Ich hoffe, ich konnte mit meinen Ideen und meiner Motivation überzeugen.
+                                                                                                MfG Paul 
             </p>
           </motion.div>
         </motion.section>
