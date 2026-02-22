@@ -8,6 +8,15 @@
     <meta name="description" content="FIB-BEWERBUNG" />
     <meta name="author" content="FIB" />
 
+    <style>
+      * {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none;     /* IE/Edge */
+        user-select: none;         /* Standard */
+        -webkit-user-drag: none;   /* Verhindert das Ziehen von Bildern */
+      }
+    </style>
+
     <meta property="og:title" content="FIB" />
     <meta property="og:description" content="FIB" />
     <meta property="og:type" content="website" />
@@ -21,5 +30,21 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // Deaktiviert Rechtsklick
+      document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+      // Deaktiviert Strg+C (Kopieren), Strg+U (Quellcode), Strg+S (Speichern), F12 (Konsole)
+      document.addEventListener('keydown', (e) => {
+        if (
+          e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'p') ||
+          e.key === 'F12'
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    </script>
   </body>
 </html>
