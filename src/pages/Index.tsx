@@ -48,7 +48,7 @@ const departments = [
   { name: "Trainings Division (TD)", tasks: "Kümmert sich um die Ausbildungen der Agents, wertet Arbeitszeugnisse aus und vermittelt wichtiges Wissen, das die Mitarbeiter für den Dienst benötigen.", icon: GraduationCap, img: tdImg },
   { name: "Critical Incident Response Group (CIRG)", tasks: "Die CIRG ist die Spezialeinheit des FIB. Die Agents werden speziell ausgebildet, um in jeglichen Krisensituationen zu reagieren. Außerdem kümmert sich die CIRG um die Planung und Ausführung der Events.", icon: Shield, img: cirgImg },
   { name: "Public Relations (PR)", tasks: "Die PR ist die Presseabteilung des FIB. Sie kümmert sich um Pressekonferenzen und die Kommunikation mit den Bürgern. Sie arbeitet mit der HR zusammen, um offene Bewerbungsphasen anzukündigen.", icon: BookOpen, img: prImg },
-  { name: "LAW", tasks: "Die LAW ist die Juraabteilung des FIB. Sie kümmert sich um die Jura-Schulung der Mitarbeiter.", icon: Scale, img: lawImg },
+  { name: "LAW", tasks: "Die LAW ist die Juraabteilung des FIB. Sie kümmert sich um die Jura-Schulung der Mitarbeiter. Außerdem beinhaltet die LAW Orga Anwälte, falls meine Mitarbeiter in Schwierigkeiten geraten und Rechtsbeistand benötigen.", icon: Scale, img: lawImg },
 ];
 
 const ranks = [
