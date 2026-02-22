@@ -38,7 +38,7 @@ const rpImprovements = [
   { title: "Wantedjagt", desc: "Es wird es alle zwei Wochen ein UC Event geben bei dem alle mit der UC Prüfung ausschließlich Wanteds und beweise sammeln. Mit einer Belohnung für die Aktivsten." },
   { title: "Verhalten", desc: "Freundlichkeit steht an erster Stelle. Das Verhalten ist extrem wichtig. Jedes Fehlverhalten, das zu weit geht oder jemanden verletzt/belästigt, wird strikt geahndet. ." },
   { title: "Organisationsübergreifende zusammenarbeit", desc: "Wir möchten aktiv organisationsübergreifend zusammenarbeiten mit jeglichen Orgas, um das Role-Play für alle zu fördern und die geltenden Rechte strikt durchzusetzen." },
-  { title: "Beiweissammlung", desc: "Beweise werden aktiv gesammelt, um das Gesetz strikt zu vollstrecken. Beweise werden auch gesammelt, u. a. um Gangs und illegale Strukturen zu Zerschlagen ." },
+  { title: "Beweissammlung", desc: "Beweise werden aktiv gesammelt, um das Gesetz strikt zu vollstrecken. Beweise werden auch gesammelt, u. a. um Gangs und illegale Strukturen zu Zerschlagen ." },
 ];
 
 const departments = [
