@@ -10,10 +10,10 @@
 
     <style>
       * {
-        -webkit-user-select: none; /* Safari */
-        -ms-user-select: none;     /* IE/Edge */
-        user-select: none;         /* Standard */
-        -webkit-user-drag: none;   /* Verhindert das Ziehen von Bildern */
+        -webkit-user-select: none; 
+        -ms-user-select: none;     
+        user-select: none;         
+        -webkit-user-drag: none;   
       }
     </style>
 
@@ -22,7 +22,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="" />
     <meta name="twitter:site" content="FIB-BEWERBUNG" />
     <meta name="twitter:image" content="" />
   </head>
@@ -32,10 +32,10 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <script>
-      // Deaktiviert Rechtsklick
+      
       document.addEventListener('contextmenu', (e) => e.preventDefault());
 
-      // Deaktiviert Strg+C (Kopieren), Strg+U (Quellcode), Strg+S (Speichern), F12 (Konsole)
+    
       document.addEventListener('keydown', (e) => {
         if (
           e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'p') ||
